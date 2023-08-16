@@ -11,6 +11,9 @@ function orjanik_theme_setup(){
     add_theme_support('html5', array('comment-form', 'search-form'));
     add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'video', 'quote', 'audio', 'link' ) );
     add_editor_style('/assets/css/editor-style.css');
+
+    register_nav_menu( 'primary', __('Primary Menu', 'orjanik') );
+    register_nav_menu( 'mobile-nav', __('Mobile Menu', 'orjanik') );
 }
 add_action('after_setup_theme', 'orjanik_theme_setup');
 
