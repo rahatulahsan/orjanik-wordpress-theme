@@ -10,7 +10,9 @@ function orjanik_theme_setup(){
     add_theme_support( 'post-thumbnails' );
     add_theme_support('html5', array('comment-form', 'search-form'));
     add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'video', 'quote', 'audio', 'link' ) );
+    add_theme_support( 'woocommerce' );
     add_editor_style('/assets/css/editor-style.css');
+
 
     register_nav_menu( 'primary', __('Primary Menu', 'orjanik') );
     register_nav_menu( 'mobile-nav', __('Mobile Menu', 'orjanik') );
@@ -42,3 +44,85 @@ function orjanik_assets(){
 
 }
 add_action('wp_enqueue_scripts', 'orjanik_assets');
+
+
+
+/**
+ * Change number or products per row to 3
+ */
+
+
+if (!function_exists('loop_columns')) {
+	function loop_columns() {
+		return 3; // 3 products per row
+	}
+}
+add_filter('loop_shop_columns', 'loop_columns', 999);
+
+// Display the Woocommerce Discount Percentage on the Sale Badge for variable products and single products
+add_filter( 'woocommerce_sale_flash', 'display_percentage_on_sale_badge', 20, 3 );
+function display_percentage_on_sale_badge( $html, $post, $product ) {
+
+  if( $product->is_type('variable')){
+      $percentages = array();
+
+      // This will get all the variation prices and loop throughout them
+      $prices = $product->get_variation_prices();
+
+      foreach( $prices['price'] as $key => $price ){
+          // Only on sale variations
+          if( $prices['regular_price'][$key] !== $price ){
+              // Calculate and set in the array the percentage for each variation on sale
+              $percentages[] = round( 100 - ( floatval($prices['sale_price'][$key]) / floatval($prices['regular_price'][$key]) * 100 ) );
+          }
+      }
+      // Displays maximum discount value
+      $percentage = max($percentages) . '%';
+
+  } elseif( $product->is_type('grouped') ){
+      $percentages = array();
+
+     // This will get all the variation prices and loop throughout them
+      $children_ids = $product->get_children();
+
+      foreach( $children_ids as $child_id ){
+          $child_product = wc_get_product($child_id);
+
+          $regular_price = (float) $child_product->get_regular_price();
+          $sale_price    = (float) $child_product->get_sale_price();
+
+          if ( $sale_price != 0 || ! empty($sale_price) ) {
+              // Calculate and set in the array the percentage for each child on sale
+              $percentages[] = round(100 - ($sale_price / $regular_price * 100));
+          }
+      }
+     // Displays maximum discount value
+      $percentage = max($percentages) . '%';
+
+  } else {
+      $regular_price = (float) $product->get_regular_price();
+      $sale_price    = (float) $product->get_sale_price();
+
+      if ( $sale_price != 0 || ! empty($sale_price) ) {
+          $percentage    = round(100 - ($sale_price / $regular_price * 100)) . '%';
+      } else {
+          return $html;
+      }
+  }
+  return '<div class="product__discount__percent">' . esc_html__( '-', 'woocommerce' ) . ' '. $percentage . '</div>'; // If needed then change or remove "up to -" text
+}
+
+function orjanik_custom_css() {
+    $breadcrumb_img = get_template_directory_uri().'/assets/img/breadcrumb.jpg';
+    ?>
+        <style>
+            .breadcrumb-section{
+                background-image: url(<?php echo $breadcrumb_img; ?>)!important;
+            }
+
+
+        </style>
+    <?php
+}
+add_action('wp_head', 'orjanik_custom_css');
+
