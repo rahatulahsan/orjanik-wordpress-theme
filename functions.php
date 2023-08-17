@@ -42,6 +42,8 @@ function orjanik_assets(){
     wp_enqueue_script( 'owl-carousel-js', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array('jquery'), 1.0,true);
     wp_enqueue_script( 'orjanik-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), 1.0,true);
 
+    wp_enqueue_script( 'share-js', '//static.elfsight.com/platform/platform.js');
+
 }
 add_action('wp_enqueue_scripts', 'orjanik_assets');
 
@@ -112,6 +114,59 @@ function display_percentage_on_sale_badge( $html, $post, $product ) {
   return '<div class="product__discount__percent">' . esc_html__( '-', 'woocommerce' ) . ' '. $percentage . '</div>'; // If needed then change or remove "up to -" text
 }
 
+
+// 1. Show plus minus buttons
+  
+add_action( 'woocommerce_after_quantity_input_field', 'bbloomer_display_quantity_plus' );
+  
+function bbloomer_display_quantity_plus() {
+   echo '<button type="button" class="plus">+</button>';
+}
+  
+add_action( 'woocommerce_before_quantity_input_field', 'bbloomer_display_quantity_minus' );
+  
+function bbloomer_display_quantity_minus() {
+   echo '<button type="button" class="minus">-</button>';
+}
+  
+// -------------
+// 2. Trigger update quantity script
+  
+add_action( 'wp_footer', 'bbloomer_add_cart_quantity_plus_minus' );
+  
+function bbloomer_add_cart_quantity_plus_minus() {
+ 
+   if ( ! is_product() && ! is_cart() ) return;
+    
+   wc_enqueue_js( "   
+           
+      $(document).on( 'click', 'button.plus, button.minus', function() {
+  
+         var qty = $( this ).parent( '.quantity' ).find( '.qty' );
+         var val = parseFloat(qty.val());
+         var max = parseFloat(qty.attr( 'max' ));
+         var min = parseFloat(qty.attr( 'min' ));
+         var step = parseFloat(qty.attr( 'step' ));
+ 
+         if ( $( this ).is( '.plus' ) ) {
+            if ( max && ( max <= val ) ) {
+               qty.val( max ).change();
+            } else {
+               qty.val( val + step ).change();
+            }
+         } else {
+            if ( min && ( min >= val ) ) {
+               qty.val( min ).change();
+            } else if ( val > 1 ) {
+               qty.val( val - step ).change();
+            }
+         }
+ 
+      });
+        
+   " );
+}
+
 function orjanik_custom_css() {
     $breadcrumb_img = get_template_directory_uri().'/assets/img/breadcrumb.jpg';
     ?>
@@ -125,4 +180,6 @@ function orjanik_custom_css() {
     <?php
 }
 add_action('wp_head', 'orjanik_custom_css');
+
+
 

@@ -23,7 +23,7 @@ global $product; ?>
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<div class="breadcrumb__text">
-					<?php woocommerce_template_single_title(); ?>
+					<h2><?php the_title(); ?></h2>
 					<div class="breadcrumb__option">
 						<a href="<?php echo site_url(); ?>">Home</a>
 						<?php $category = $product->get_categories(); echo $category; ?>
@@ -34,50 +34,72 @@ global $product; ?>
 		</div>
 	</div>
 </section>
-<?php 
-/**
- * Hook: woocommerce_before_single_product.
- *
- * @hooked woocommerce_output_all_notices - 10
- */
-do_action( 'woocommerce_before_single_product' );
 
+<?php 
+
+do_action('woocommerce_before_single_product');
 if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
 ?>
 
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+							<?php woocommerce_show_product_sale_flash(); ?>
+                            <?php if ( has_post_thumbnail( $product->id ) ) {
+								$attachment_ids[0] = get_post_thumbnail_id( $product->id );
+								$attachment = wp_get_attachment_image_src($attachment_ids[0], 'full' ); ?>    
+								<img src="<?php echo $attachment[0] ; ?>" class="card-image"  />
+							<?php } ?>
+								
+                        </div>
+						
+							<div class="product__details__pic__slider owl-carousel">
+								<?php 
+								
+								$attachment_ids = $product->get_gallery_image_ids(); 
+								
+								foreach($attachment_ids as $attach_id){?>
+									<img src="<?php echo wp_get_attachment_url($attach_id); ?>" alt="">
+								<?php }
+								
+								?>
+							</div>
+						
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <?php woocommerce_template_single_title(); ?>
+                        <div class="product__details__rating">
+							<?php woocommerce_template_single_rating(); ?>
+                        </div>
+                        <?php woocommerce_template_single_price(); ?>
+                        <p><?php woocommerce_template_single_excerpt(); ?></p>
+                        <div class="shop_cart"><?php woocommerce_template_single_add_to_cart(); ?>
+                        <?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?></div>
+                        <ul>
+                            <li><b>Availability</b> <span><?php echo $product->get_stock_status(); ?></span></li>
+                            <li><b>Shipping</b> <span><?php echo $product->get_shipping_class(); ?></span></li>
+                            <li><b>Weight</b> <span><?php echo $product->get_weight(); ?></span></li>
+							<div class="elfsight-app-a247f3c8-29ee-4a6a-bdd6-dc5d03f1a0c6"></div>
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+</section>
+
+
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
-
-	<?php
-	/**
-	 * Hook: woocommerce_before_single_product_summary.
-	 *
-	 * @hooked woocommerce_show_product_sale_flash - 10
-	 * @hooked woocommerce_show_product_images - 20
-	 */
-	do_action( 'woocommerce_before_single_product_summary' );
-	?>
-
-	<div class="summary entry-summary">
-		<?php
-		/**
-		 * Hook: woocommerce_single_product_summary.
-		 *
-		 * @hooked woocommerce_template_single_title - 5
-		 * @hooked woocommerce_template_single_rating - 10
-		 * @hooked woocommerce_template_single_price - 10
-		 * @hooked woocommerce_template_single_excerpt - 20
-		 * @hooked woocommerce_template_single_add_to_cart - 30
-		 * @hooked woocommerce_template_single_meta - 40
-		 * @hooked woocommerce_template_single_sharing - 50
-		 * @hooked WC_Structured_Data::generate_product_data() - 60
-		 */
-		do_action( 'woocommerce_single_product_summary' );
-		?>
-	</div>
-
 	<?php
 	/**
 	 * Hook: woocommerce_after_single_product_summary.
