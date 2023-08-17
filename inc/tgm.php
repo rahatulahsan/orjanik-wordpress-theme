@@ -83,6 +83,12 @@ function orjanik_register_required_plugins() {
 			'slug'      => 'classic-widgets',
 			'required'  => true,
 		),
+		array(
+			'name'      => 'YITH WooCommerce Compare',
+			'slug'      => 'yith-woocommerce-compare',
+			'required'  => true,
+		),
+
 
 
 	);
