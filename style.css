@@ -271,3 +271,127 @@ a.button.wc-forward {
 .eapps-social-share-buttons-container {
     margin-top: 40px;
 }
+
+/* Cart CSS */
+
+.woocommerce table.shop_table th{
+    font-size: 20px;
+    font-weight: 700;
+    color: #1c1c1c;
+    padding-bottom: 20px;
+}
+
+.woocommerce table.shop_table{
+    border: 0;
+    margin: 0;
+}
+
+.woocommerce-cart .quantity {
+    display: flex;
+    justify-content: center;
+    max-width: 70%;
+}
+
+td.product-thumbnail.shoping__cart__item img {
+    width: 100px;
+}
+
+a.cart_product_name {
+    margin-left: 30px;
+    font-size: 18px;
+    color: #000;
+}
+span.woocommerce-Price-amount.amount {
+    font-weight: 700;
+}
+
+button.button.update_cart {
+    padding: 14px 30px 12px!important;
+    color: #6f6f6f!important;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.coupon h5 {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+input#coupon_code {
+    width: 255px;
+    height: 46px;
+    font-size: 16px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+button.coupon_btn {
+    padding: 15px 30px 11px!important;
+    font-size: 12px!important;
+    background: #6f6f6f!important;
+    color: #fff!important;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    border-radius: 0px!important;
+    height: 46px;
+}
+
+.shopping-cart {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.cart_totals {
+    background: #f5f5f5;
+    padding: 30px;
+}
+
+.cart_totals h2 {
+    font-weight: 700;
+    color: #1c1c1c;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+a.checkout-button.button.alt.wc-forward {
+    width: 100%;
+    padding: 0;
+    padding-top: 10px;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 4px;
+}
+
+a.button.wc-backward {
+    background-color: #f5f5f5!important;
+    border-radius: 0;
+    width: 50%;
+    color: #6f6f6f;
+    border: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+p.return-to-shop {
+    text-align: left;
+}
+
+
+
+
+
+/* Responsive CSS */
+
+@media (max-width: 640px){
+    .woocommerce-cart .quantity {
+        margin-left: 100px!important;
+    }
+    .woocommerce-page table.cart td.actions .coupon .button{
+        width: 100%;
+        margin-top: 10px;
+    }
+}
