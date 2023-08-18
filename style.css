@@ -379,10 +379,129 @@ a.button.wc-backward {
 p.return-to-shop {
     text-align: left;
 }
+p.return-to-shop.empty_cart {
+    text-align: center;
+}
 
 
+/* Checkout CSS */
+
+.woocommerce-info {
+    border-top-color: #6AB963;
+    text-align: center;
+}
+.woocommerce-info::before {
+    color: #6AB963;
+    left: auto;
+}
+span.have_coupon_txt {
+    margin-left: 25px;
+}
+
+a.showcoupon {
+    color: #6AB963;
+    text-decoration: underline;
+}
+a.showcoupon:hover {
+    color: #6AB963;
+}
+.woocommerce-checkout input#coupon_code {
+    width: 100%;
+    border: 1px solid #d7d7d7;
+}
+
+p.coupon_box_text {
+    font-weight: 700;
+}
+
+form.checkout.woocommerce-checkout {
+    padding-top: 50px;
+}
+
+form.checkout.woocommerce-checkout h3 {
+    color: #1c1c1c;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.woocommerce-billing-fields__field-wrapper span {
+    display: block;
+    width: 100%;
+}
+.woocommerce form .form-row label {
+    color: #1c1c1c;
+    margin-bottom: 14px;
+}
+.woocommerce form .form-row input.input-text {
+    height: 46px;
+    border: 1px solid #ebebeb;
+    padding-left: 20px;
+    font-size: 16px;
+    color: #b2b2b2;
+    border-radius: 4px;
+}
+p#order_comments_field {
+    display: block;
+}
+textarea#order_comments {
+    padding: 10px;
+    border: 1px solid #f5f5f5;
+}
+table.shop_table.woocommerce-checkout-review-order-table {
+    background: #f5f5f5;
+    padding: 30px;
+    border-radius: 0;
+}
+div#payment {
+    background: #f5f5f5!important;
+    padding: 30px;
+}
+h3#order_review_heading {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+button#place_order {
+    width: 100%;
+    background: #7fad39;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 0;
+}
 
 
+/* Order-receipt CSS */
+
+p.woocommerce-notice.woocommerce-notice--success.woocommerce-thankyou-order-received {
+    color: #7fad39;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+h2.woocommerce-order-details__title {
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.woocommerce-column.woocommerce-column--1.woocommerce-column--billing-address.col-1,
+.woocommerce-column.woocommerce-column--2.woocommerce-column--shipping-address.col-2 {
+    max-width: 100%;
+}
+.woocommerce-customer-details h2.woocommerce-column__title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: underline;
+}
+
+td.woocommerce-table__product-name.product-name a {
+    color: #7fad39;
+}
 
 /* Responsive CSS */
 
