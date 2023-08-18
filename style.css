@@ -503,6 +503,60 @@ td.woocommerce-table__product-name.product-name a {
     color: #7fad39;
 }
 
+
+/* My-Account page CSS */
+
+nav.woocommerce-MyAccount-navigation ul {
+    list-style: none;
+}
+nav.woocommerce-MyAccount-navigation ul li {
+    border: 1px solid #f5f5f5;
+    padding: 10px;
+}
+nav.woocommerce-MyAccount-navigation ul li a {
+    color: #000;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+nav.woocommerce-MyAccount-navigation ul li:hover {
+    background-color: #7fad39;
+}
+.woocommerce-MyAccount-content a {
+    color: #7fad39;
+}
+.woocommerce-MyAccount-content a:hover {
+    color: #7fad39;
+}
+a.woocommerce-button.button.view {
+    width: 100%;
+    border-radius: 0;
+    background-color: #7fad39!important;
+    color: #fff;
+    letter-spacing: 2px;
+}
+.u-column1.col-1.woocommerce-Address {
+    max-width: 100%;
+}
+.u-column2.col-2.woocommerce-Address {
+    max-width: 100%;
+}
+button.woocommerce-Button.button {
+    background: #7fad39;
+    border-radius: 0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+button.woocommerce-Button.button:hover {
+    background: #7fad39;
+    color: #fff;
+    opacity: 0.8;
+}
+.woocommerce-account .woocommerce form .form-row{
+    display: block;
+}
+
 /* Responsive CSS */
 
 @media (max-width: 640px){
