@@ -76,31 +76,29 @@ $options = get_option( 'orjanik_framework' );
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="<?php echo get_template_directory_uri(); ?>/assets/img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="<?php echo get_template_directory_uri(); ?>/assets/img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="<?php echo get_template_directory_uri(); ?>/assets/img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="<?php echo get_template_directory_uri(); ?>/assets/img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="<?php echo get_template_directory_uri(); ?>/assets/img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
+
+                    <?php 
+                    
+                        $args = array(
+                            'taxonomy' => 'product_cat',
+                            'orderby'  =>  'name',
+                            'hide_empty' => true
+                        );
+                        $all_cats = get_categories($args);
+
+                        foreach($all_cats as $cat_carousel){
+                            $thumbnail_id = get_woocommerce_term_meta($cat_carousel->term_id, 'thumbnail_id', true);
+                            $image = wp_get_attachment_url( $thumbnail_id );
+                            ?>
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg" data-setbg="<?php echo $image; ?>">
+                                    <h5><a href="<?php echo get_term_link($cat_carousel->slug, 'product_cat'); ?>"><?php echo $cat_carousel->name; ?></a></h5>
+                                </div>
+                            </div>
+                        <?php }
+                    
+                    ?>
+                    
                 </div>
             </div>
         </div>

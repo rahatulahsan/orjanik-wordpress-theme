@@ -84,10 +84,14 @@ $theme_options = get_option( 'orjanik_framework' );
         ?>
         <div id="mobile-menu-wrap"></div>
         <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+            <?php 
+                                    
+                $header_socials = $theme_options['header-socials'];
+                foreach($header_socials as $social){?>
+                    <a href="<?php echo $social['social-link']['url']; ?>"><i class="<?php echo $social['social-icon']; ?>"></i></a>
+                <?php }
+                                
+            ?>
         </div>
         <div class="humberger__menu__contact">
             <ul>
