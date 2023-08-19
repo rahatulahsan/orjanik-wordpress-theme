@@ -2,7 +2,8 @@
 /** 
  * Template name: Homepage
  * */ 
-get_header(); 
+get_header();
+$options = get_option( 'orjanik_framework' );
 ?>
 
     <!-- Hero Section Begin -->
@@ -51,17 +52,17 @@ get_header();
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
+                                <h5><?php echo $options['header-phone']; ?></h5>
+                                <span><?php echo $options['header-phone-text']; ?></span>
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="<?php echo get_template_directory_uri(); ?>/assets/img/hero/banner.jpg">
+                    <div class="hero__item set-bg" data-setbg="<?php echo $options['home-banner']; ?>">
                         <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
+                            <span><?php echo $options['banner-sub-title-1']; ?></span>
+                            <h2><?php echo $options['banner-title']; ?></h2>
+                            <p><?php echo $options['banner-sub-title-2']; ?></p>
+                            <a href="<?php echo $options['banner-button-link']['url']; ?>" class="primary-btn"><?php echo $options['banner-button-name']; ?></a>
                         </div>
                     </div>
                 </div>

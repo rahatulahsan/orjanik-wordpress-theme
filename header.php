@@ -1,6 +1,7 @@
 <?php 
 global $woocommerce; 
-GLOBAL $current_user;
+global $current_user;
+$theme_options = get_option( 'orjanik_framework' );
 ?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
@@ -23,7 +24,15 @@ GLOBAL $current_user;
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt=""></a>
+             <?php 
+
+            if(has_custom_logo()){
+                the_custom_logo();
+            }else{
+                echo '<h1 class="logo_name"><a href='.home_url("/").'>'.get_bloginfo('name'). '</a></h1>';
+            }
+
+            ?>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -37,7 +46,7 @@ GLOBAL $current_user;
                 ?></span></a></li>
                 <li><a href="<?php echo $woocommerce->cart->get_cart_url()?>"><i class="fa fa-shopping-bag"></i> <span><?php echo $woocommerce->cart->cart_contents_count; ?></span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">item: <span><?php echo $woocommerce->cart->get_cart_total(); ?></span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -50,7 +59,15 @@ GLOBAL $current_user;
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                <?php 
+                
+                if(!is_user_logged_in(  )){?>
+                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><i class="fa fa-user"></i> Login</a>
+                <?php }else{?>
+                    <a href="#"><?php echo $current_user->display_name; ?></a>
+                <?php }
+                
+                ?>
             </div>
         </div>
         
@@ -74,8 +91,8 @@ GLOBAL $current_user;
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
+                <li><i class="fa fa-envelope"></i><?php echo $theme_options['header-email']; ?></li>
+                <li><?php echo $theme_options['header-message']; ?></li>
             </ul>
         </div>
     </div>
@@ -89,18 +106,23 @@ GLOBAL $current_user;
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-envelope"></i> <?php echo $theme_options['header-email']; ?></li>
+                                <li><?php echo $theme_options['header-message']; ?></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                <?php 
+                                
+                                    $header_socials = $theme_options['header-socials'];
+                                    foreach($header_socials as $social){?>
+                                        <a href="<?php echo $social['social-link']['url']; ?>"><i class="<?php echo $social['social-icon']; ?>"></i></a>
+                                    <?php }
+                                
+                                ?>
+
                             </div>
                             <div class="header__top__right__language">
                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/language.png" alt="">
@@ -117,7 +139,7 @@ GLOBAL $current_user;
                                 if(!is_user_logged_in(  )){?>
                                     <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><i class="fa fa-user"></i> Login</a>
                                 <?php }else{?>
-                                    <a href="#"><i class="fa fa-user"></i><?php echo $current_user->display_name; ?></a>
+                                    <a href="#"><?php echo $current_user->display_name; ?></a>
                                 <?php }
                                 
                                 ?>
@@ -131,7 +153,16 @@ GLOBAL $current_user;
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt=""></a>
+                        <?php 
+
+                        if(has_custom_logo()){
+                            the_custom_logo();
+                        }else{
+                            echo '<h1 class="logo_name"><a href='.home_url("/").'>'.get_bloginfo('name'). '</a></h1>';
+                        }
+
+                        ?>
+                        
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -161,7 +192,7 @@ GLOBAL $current_user;
                             ?></span></a></li>
                             <li><a href="<?php echo $woocommerce->cart->get_cart_url()?>"><i class="fa fa-shopping-bag"></i> <span><?php echo $woocommerce->cart->cart_contents_count; ?></span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">item: <span><?php echo $woocommerce->cart->get_cart_total(); ?></span></div>
                     </div>
                 </div>
             </div>

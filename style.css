@@ -596,6 +596,17 @@ td.product-add-to-cart a {
     letter-spacing: 2px;
 }
 
+/* Header CSS */
+h1.logo_name {
+    font-size: 40px;
+}
+h1.logo_name a {
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
 
 /* Responsive CSS */
 

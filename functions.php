@@ -1,5 +1,6 @@
 <?php 
 require_once get_theme_file_path( '/inc/tgm.php' );
+require_once get_theme_file_path( '/inc/theme-options.php' );
 
 
 function orjanik_theme_setup(){
@@ -24,6 +25,8 @@ function orjanik_assets(){
     wp_enqueue_style( 'style-css', get_stylesheet_uri());
 
     wp_enqueue_style( 'cairo-font', '//fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap');
+
+    wp_enqueue_style( 'fa5', 'https://use.fontawesome.com/releases/v5.13.0/css/all.css', array(), '5.13.0', 'all' );
 
     wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/assets/css/bootstrap.min.css', '1.0', 'all');
     wp_enqueue_style( 'fontawesome-css', get_template_directory_uri() . '/assets/css/font-awesome.min.css', '1.0', 'all');
