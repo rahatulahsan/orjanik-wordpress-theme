@@ -153,4 +153,44 @@ if( class_exists( 'CSF' ) ) {
     )
   ) );
 
+  //
+  // Advertisement Tabs
+  CSF::createSection( $prefix, array(
+    'id'    => 'ads_tab', // Set a unique slug-like ID
+    'title' => 'Advertisement',
+    'fields' => array(
+
+        array(
+            'id'         => 'banner-enable-disable', // field id
+            'type'       => 'switcher',
+            'title'      => 'Enable/Disable ADS',
+            'default'    => true
+        ),
+
+        array(
+            'id'           => 'ad-image-1',
+            'type'         => 'upload',
+            'title'        => 'Upload Image 1',
+            'library'      => 'image',
+            'placeholder'  => 'http://',
+            'button_title' => 'Add Image',
+            'remove_title' => 'Remove Image',
+            'dependency' => array( 'banner-enable-disable', '==', 'true' ),
+            'preview'      => true
+        ),
+        array(
+            'id'           => 'ad-image-2',
+            'type'         => 'upload',
+            'title'        => 'Upload Image 2',
+            'library'      => 'image',
+            'placeholder'  => 'http://',
+            'button_title' => 'Add Image',
+            'remove_title' => 'Remove Image',
+            'dependency' => array( 'banner-enable-disable', '==', 'true' ),
+            'preview'      => true
+        ),
+  
+      )
+  ) );
+
 }

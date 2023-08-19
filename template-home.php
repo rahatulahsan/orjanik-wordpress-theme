@@ -4,6 +4,7 @@
  * */ 
 get_header();
 $options = get_option( 'orjanik_framework' );
+global $product;
 ?>
 
     <!-- Hero Section Begin -->
@@ -254,16 +255,18 @@ $options = get_option( 'orjanik_framework' );
     <div class="banner">
         <div class="container">
             <div class="row">
+                <?php if('1' == $options['banner-enable-disable']) : ?>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/banner/banner-1.jpg" alt="">
+                        <img src="<?php echo $options['ad-image-1']; ?>" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/banner/banner-2.jpg" alt="">
+                        <img src="<?php echo $options['ad-image-2']; ?>" alt="">
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -275,195 +278,220 @@ $options = get_option( 'orjanik_framework' );
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
-                        <h4>Latest Products</h4>
+                        <h4><?php _e('Latest Products','orjanik'); ?></h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+
+                                <?php
+                                    $args = array(
+                                        'post_type'   => 'product',
+                                        'post_status' => 'publish',
+                                        'posts_per_page' => 3,  // -1 will get all the product. Specify positive integer value to get the number given number of product
+                                        );
+                                    $the_query = new WP_Query( $args );
+                                    if ( $the_query->have_posts() ) {
+                                        while ( $the_query->have_posts() ) : $the_query->the_post();?>
+
+                                        <a href="<?php the_permalink(); ?>" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <?php echo $product->get_image(); ?>
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6><?php echo $product->get_name(); ?></h6>
+                                                <?php $price = get_post_meta( get_the_ID(), '_price', true ); ?>
+                                                <span><?php echo wc_price( $price ); ?></span>
+                                            </div>
+                                        </a>
+
+                                        <?php endwhile;
+                                    } else {
+                                        echo __( 'No products found' );
+                                    }
+                                    wp_reset_postdata();
+                                ?>
+                                
+
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                <?php
+                                    $args = array(
+                                        'post_type'   => 'product',
+                                        'post_status' => 'publish',
+                                        'posts_per_page' => 3,
+                                        'offset'        => 3
+                                        );
+                                    $the_query = new WP_Query( $args );
+                                    if ( $the_query->have_posts() ) {
+                                        while ( $the_query->have_posts() ) : $the_query->the_post();?>
+
+                                        <a href="<?php the_permalink(); ?>" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <?php echo $product->get_image(); ?>
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6><?php echo $product->get_name(); ?></h6>
+                                                <?php $price = get_post_meta( get_the_ID(), '_price', true ); ?>
+                                                <span><?php echo wc_price( $price ); ?></span>
+                                            </div>
+                                        </a>
+
+                                        <?php endwhile;
+                                    } else {
+                                        echo __( 'No products found' );
+                                    }
+                                    wp_reset_postdata();
+                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
-                        <h4>Top Rated Products</h4>
+                        <h4><?php _e('Top Rated Products', 'orjanik'); ?></h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+
+                                <?php
+                                    $args = array(
+                                        'post_type'   => 'product',
+                                        'post_status' => 'publish',
+                                        'posts_per_page' => 3,
+                                        'orderby'       => 'meta_value_num',
+                                        'meta_key'      => 'total_sales',
+                                        'order'         => 'desc'
+                                        );
+                                    $the_query = new WP_Query( $args );
+                                    if ( $the_query->have_posts() ) {
+                                        while ( $the_query->have_posts() ) : $the_query->the_post();?>
+
+                                        <a href="<?php the_permalink(); ?>" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <?php echo $product->get_image(); ?>
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6><?php echo $product->get_name(); ?></h6>
+                                                <?php $price = get_post_meta( get_the_ID(), '_price', true ); ?>
+                                                <span><?php echo wc_price( $price ); ?></span>
+                                            </div>
+                                        </a>
+
+                                        <?php endwhile;
+                                    } else {
+                                        echo __( 'No products found' );
+                                    }
+                                    wp_reset_postdata();
+                                ?>
+
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                
+                                <?php
+                                    $args = array(
+                                        'post_type'   => 'product',
+                                        'post_status' => 'publish',
+                                        'posts_per_page' => 3,
+                                        'offset'        => 3,
+                                        'orderby'       => 'meta_value_num',
+                                        'meta_key'      => 'total_sales',
+                                        'order'         => 'desc'
+                                        );
+                                    $the_query = new WP_Query( $args );
+                                    if ( $the_query->have_posts() ) {
+                                        while ( $the_query->have_posts() ) : $the_query->the_post();?>
+
+                                        <a href="<?php the_permalink(); ?>" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <?php echo $product->get_image(); ?>
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6><?php echo $product->get_name(); ?></h6>
+                                                <?php $price = get_post_meta( get_the_ID(), '_price', true ); ?>
+                                                <span><?php echo wc_price( $price ); ?></span>
+                                            </div>
+                                        </a>
+
+                                        <?php endwhile;
+                                    } else {
+                                        echo __( 'No products found' );
+                                    }
+                                    wp_reset_postdata();
+                                ?>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
-                        <h4>Review Products</h4>
+                        <h4><?php _e('Review Products', 'orjanik'); ?></h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                <?php
+                                    $args = array(
+                                        'post_type'   => 'product',
+                                        'post_status' => 'publish',
+                                        'posts_per_page' => 3,
+                                        'meta_query'    => array(
+                                            'key'     => '_wc_average_rating',
+                                            'value'   => '3',
+                                            'compare' => '>='
+                                        )
+                                        );
+                                    $the_query = new WP_Query( $args );
+                                    if ( $the_query->have_posts() ) {
+                                        while ( $the_query->have_posts() ) : $the_query->the_post();?>
+
+                                        <a href="<?php the_permalink(); ?>" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <?php echo $product->get_image(); ?>
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6><?php echo $product->get_name(); ?></h6>
+                                                <?php $price = get_post_meta( get_the_ID(), '_price', true ); ?>
+                                                <span><?php echo wc_price( $price ); ?></span>
+                                            </div>
+                                        </a>
+
+                                        <?php endwhile;
+                                    } else {
+                                        echo __( 'No products found' );
+                                    }
+                                    wp_reset_postdata();
+                                ?>
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                <?php
+                                    $args = array(
+                                        'post_type'   => 'product',
+                                        'post_status' => 'publish',
+                                        'posts_per_page' => 3,
+                                        'meta_query'    => array(
+                                            'key'     => '_wc_average_rating',
+                                            'value'   => '3',
+                                            'compare' => '>='
+                                        )
+                                        );
+                                    $the_query = new WP_Query( $args );
+                                    if ( $the_query->have_posts() ) {
+                                        while ( $the_query->have_posts() ) : $the_query->the_post();?>
+
+                                        <a href="<?php the_permalink(); ?>" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <?php echo $product->get_image(); ?>
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6><?php echo $product->get_name(); ?></h6>
+                                                <?php $price = get_post_meta( get_the_ID(), '_price', true ); ?>
+                                                <span><?php echo wc_price( $price ); ?></span>
+                                            </div>
+                                        </a>
+
+                                        <?php endwhile;
+                                    } else {
+                                        echo __( 'No products found' );
+                                    }
+                                    wp_reset_postdata();
+                                ?>
                             </div>
                         </div>
                     </div>

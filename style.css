@@ -606,7 +606,11 @@ h1.logo_name a {
     text-transform: uppercase;
 }
 
+/* Homepage CSS */
 
+.latest-product__item__text span{
+    display: inline-block!important;
+}
 
 /* Responsive CSS */
 
