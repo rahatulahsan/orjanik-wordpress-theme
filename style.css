@@ -338,6 +338,9 @@ button.coupon_btn {
     border-radius: 0px!important;
     height: 46px;
 }
+.woocommerce-page form .form-row-last{
+    width: 52%!important;
+}
 
 .shopping-cart {
     padding-top: 80px;
@@ -557,6 +560,43 @@ button.woocommerce-Button.button:hover {
     display: block;
 }
 
+.woocommerce .col2-set .col-1, .woocommerce-page .col2-set .col-1,
+.woocommerce .col2-set .col-2, .woocommerce-page .col2-set .col-2{
+    max-width: 100%;
+}
+
+
+/* Wishlist Page CSS */
+
+.wishlist_page {
+    padding-top: 50px;
+}
+.woocommerce .wishlist-title h2 {
+    font-weight: 700;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.page-template-template-wishlist td.product-name a {
+    font-size: 16px;
+    color: #1c1c1c;
+}
+
+.page-template-template-wishlist .woocommerce table.shop_table th{
+    text-align: center;
+}
+td.product-add-to-cart {
+    background: #7fad39;
+}
+td.product-add-to-cart a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
 /* Responsive CSS */
 
 @media (max-width: 640px){
@@ -566,5 +606,22 @@ button.woocommerce-Button.button:hover {
     .woocommerce-page table.cart td.actions .coupon .button{
         width: 100%;
         margin-top: 10px;
+    }
+
+    .page-template-template-wishlist .product-name h3 a {
+        font-size: 16px;
+        color: #1c1c1c!important;
+    }
+    .page-template-template-wishlist .product-add-to-cart {
+        background: #7fad39;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .page-template-template-wishlist .product-add-to-cart a {
+        color: #fff;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0px!important;
     }
 }

@@ -16,17 +16,21 @@ get_header();
                             <span>All departments</span>
                         </div>
                         <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
+                        <?php  
+
+                            $args = array(
+                                'taxonomy' => 'product_cat',
+                                'orderby'  =>  'name',
+                                'hide_empty' => true
+                            );
+                            $all_cats = get_categories($args);
+
+                            foreach($all_cats as $cats){?>
+                                <li><a href="<?php echo get_term_link($cats->slug, 'product_cat'); ?>"><?php echo $cats->name; ?></a></li>
+                            <?php }
+
+                        ?>
+                        
                         </ul>
                     </div>
                 </div>

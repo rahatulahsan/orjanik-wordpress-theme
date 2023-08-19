@@ -1,3 +1,7 @@
+<?php 
+global $woocommerce; 
+GLOBAL $current_user;
+?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 
@@ -23,8 +27,15 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="<?php echo get_page_link(96); ?>"><i class="fa fa-heart"></i> <span><?php
+                
+                $count = 0;
+                if(function_exists('yith_wcwl_count_products')){
+                    $count = yith_wcwl_count_products();
+                    echo $count;
+                }
+                ?></span></a></li>
+                <li><a href="<?php echo $woocommerce->cart->get_cart_url()?>"><i class="fa fa-shopping-bag"></i> <span><?php echo $woocommerce->cart->cart_contents_count; ?></span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
@@ -101,7 +112,15 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <?php 
+                                
+                                if(!is_user_logged_in(  )){?>
+                                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><i class="fa fa-user"></i> Login</a>
+                                <?php }else{?>
+                                    <a href="#"><i class="fa fa-user"></i><?php echo $current_user->display_name; ?></a>
+                                <?php }
+                                
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -132,8 +151,15 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="<?php echo get_page_link(96); ?>"><i class="fa fa-heart"></i> <span><?php 
+                            $count = 0;
+                            if(function_exists('yith_wcwl_count_products')){
+                                $count = yith_wcwl_count_products();
+                                echo $count;
+                            }
+                            
+                            ?></span></a></li>
+                            <li><a href="<?php echo $woocommerce->cart->get_cart_url()?>"><i class="fa fa-shopping-bag"></i> <span><?php echo $woocommerce->cart->cart_contents_count; ?></span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
