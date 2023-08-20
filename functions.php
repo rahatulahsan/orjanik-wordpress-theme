@@ -17,6 +17,8 @@ function orjanik_theme_setup(){
 
     register_nav_menu( 'primary', __('Primary Menu', 'orjanik') );
     register_nav_menu( 'mobile-nav', __('Mobile Menu', 'orjanik') );
+
+    add_image_size('orjanik-blog-featured', 360, 260, true);
 }
 add_action('after_setup_theme', 'orjanik_theme_setup');
 

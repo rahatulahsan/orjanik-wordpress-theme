@@ -620,6 +620,12 @@ input.wpcf7-form-control.wpcf7-submit.has-spinner.site-btn {
     letter-spacing: 2px;
 }
 
+/* Blog Details CSS */
+
+.blog__details__widget a {
+    color: #7fad39;
+}
+
 
 /* Responsive CSS */
 

@@ -104,7 +104,16 @@ function orjanik_register_required_plugins() {
 			'slug'      => 'mailchimp-for-wp',
 			'required'  => true,
 		),
-
+		array(
+			'name'      => 'AddToAny Share Buttons',
+			'slug'      => 'add-to-any',
+			'required'  => false,
+		),
+		array(
+			'name'      => 'Regenerate Thumbnails',
+			'slug'      => 'regenerate-thumbnails',
+			'required'  => false,
+		),
 
 
 	);
