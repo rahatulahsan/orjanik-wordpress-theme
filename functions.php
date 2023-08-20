@@ -170,6 +170,30 @@ function bbloomer_add_cart_quantity_plus_minus() {
    " );
 }
 
+// Register Sidebar
+function orjanik_widgets_init() {
+	register_sidebar( array(
+		'name'          => __( 'Footer Sidebar-1', 'orjanik' ),
+		'id'            => 'footer-sidebar-1',
+		'description'   => __( 'Widgets in this area will be shown on footer.', 'orjanik' ),
+		'before_widget' => '<ul>',
+		'after_widget'  => '</ul>',
+		'before_title'  => '<h6>',
+		'after_title'   => '</h6>',
+	) );
+    register_sidebar( array(
+		'name'          => __( 'Footer Sidebar-2', 'orjanik' ),
+		'id'            => 'footer-sidebar-2',
+		'description'   => __( 'Widgets in this area will be shown on footer.', 'orjanik' ),
+		'before_widget' => '<ul>',
+		'after_widget'  => '</ul>',
+		'before_title'  => '<h6>',
+		'after_title'   => '</h6>',
+	) );
+}
+add_action( 'widgets_init', 'orjanik_widgets_init' );
+
+
 function orjanik_custom_css() {
     $breadcrumb_img = get_template_directory_uri().'/assets/img/breadcrumb.jpg';
     ?>

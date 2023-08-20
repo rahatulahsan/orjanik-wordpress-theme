@@ -99,6 +99,11 @@ function orjanik_register_required_plugins() {
 			'slug'      => 'yith-woocommerce-compare',
 			'required'  => true,
 		),
+		array(
+			'name'      => 'MC4WP: Mailchimp for WordPress',
+			'slug'      => 'mailchimp-for-wp',
+			'required'  => true,
+		),
 
 
 

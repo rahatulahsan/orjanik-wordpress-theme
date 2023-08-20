@@ -193,4 +193,98 @@ if( class_exists( 'CSF' ) ) {
       )
   ) );
 
+
+   //
+  // Footer Tabs
+  CSF::createSection( $prefix, array(
+    'id'    => 'footer_tab', // Set a unique slug-like ID
+    'title' => 'Footer',
+    'fields' => array(
+      // Footer Logo
+      array(
+        'id'           => 'footer-logo',
+        'type'         => 'upload',
+        'title'        => 'Footer Logo',
+        'library'      => 'image',
+        'placeholder'  => 'http://',
+        'button_title' => 'Add Image',
+        'remove_title' => 'Remove Image',
+        'preview'      => true
+      ),
+      // Address
+      array(
+        'id'      => 'footer-address',
+        'type'    => 'text',
+        'title'   => 'Address',
+        'default' => '60-49 Road 11378 New York'
+      ),
+      // Phone
+      array(
+        'id'      => 'footer-phone',
+        'type'    => 'text',
+        'title'   => 'Phone',
+        'default' => '+65 11.188.666'
+      ),
+      // Email
+      array(
+        'id'      => 'footer-email',
+        'type'    => 'text',
+        'title'   => 'Email',
+        'default' => 'hello@colorlib.com'
+      ),
+      // Newsletter Heading
+      array(
+        'id'      => 'footer-newsletter-heading',
+        'type'    => 'text',
+        'title'   => 'Newsletter Heading',
+        'default' => 'Join Our Newsletter Now'
+      ),
+      // Newsletter Sub-Heading
+      array(
+        'id'      => 'footer-newsletter-sub-heading',
+        'type'    => 'text',
+        'title'   => 'Newsletter Sub Heading',
+        'default' => 'Get E-mail updates about our latest shop and special offers.'
+      ),
+      // Social Repeater
+      array(
+        'id'     => 'footer-socials',
+        'type'   => 'repeater',
+        'title'  => 'Social Icons',
+        'fields' => array(
+      
+            array(
+                'id'    => 'footer-social-icon',
+                'type'  => 'icon',
+                'title' => 'Icon',
+            ),
+            array(
+                'id'    => 'footer-social-link',
+                'type'  => 'link',
+                'title' => 'Social Link',
+            ),
+      
+        ),
+      ),
+      // Copyright
+      array(
+        'id'    => 'footer-copyright',
+        'type'  => 'wp_editor',
+        'title' => 'Copyright',
+      ),
+
+      // Payment Image
+      array(
+        'id'           => 'payment-logo',
+        'type'         => 'upload',
+        'title'        => 'Payment Logo',
+        'library'      => 'image',
+        'placeholder'  => 'http://',
+        'button_title' => 'Add Image',
+        'remove_title' => 'Remove Image',
+        'preview'      => true
+      ),
+    )
+  ));
+
 }
