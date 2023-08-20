@@ -626,6 +626,11 @@ input.wpcf7-form-control.wpcf7-submit.has-spinner.site-btn {
     color: #7fad39;
 }
 
+/* Search Box CSS */
+.hero__search__form{
+    border: none!important;
+}
+
 
 /* Responsive CSS */
 

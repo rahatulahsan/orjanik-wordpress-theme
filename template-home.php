@@ -15,7 +15,7 @@ global $product;
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span><?php _e('All departments','orjanik'); ?></span>
                         </div>
                         <ul>
                         <?php  
@@ -39,14 +39,9 @@ global $product;
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
+                              
+                            <?php echo do_shortcode( '[wd_asp elements="search" ratio="100%" id=1]' ); ?>
+
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
