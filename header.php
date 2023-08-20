@@ -196,7 +196,7 @@ $theme_options = get_option( 'orjanik_framework' );
                             ?></span></a></li>
                             <li><a href="<?php echo $woocommerce->cart->get_cart_url()?>"><i class="fa fa-shopping-bag"></i> <span><?php echo $woocommerce->cart->cart_contents_count; ?></span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span><?php echo $woocommerce->cart->get_cart_total(); ?></span></div>
+                        <div class="header__cart__price"><?php _e('item:','orjanik'); ?> <span><?php echo $woocommerce->cart->get_cart_total(); ?></span></div>
                     </div>
                 </div>
             </div>

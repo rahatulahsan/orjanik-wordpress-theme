@@ -685,6 +685,16 @@ numbers.current {
     background: #7fad39;
 }
 
+
+/* Copyright CSS */
+
+.footer__copyright__text p a {
+    color: #7fad39;
+    font-weight: 700;
+}
+
+
+
 /* Responsive CSS */
 
 @media (max-width: 640px){

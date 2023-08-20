@@ -26,7 +26,7 @@ get_header( 'shop' ); ?>
 				<div class="breadcrumb__text">
 					<h2><?php woocommerce_page_title(); ?></h2>
 					<div class="breadcrumb__option">
-						<a href="<?php echo home_url(); ?>">Home</a>
+						<a href="<?php echo home_url(); ?>"><?php _e('Home','orjanik'); ?></a>
 						<span><?php woocommerce_page_title(); ?></span>
 					</div>
 				</div>

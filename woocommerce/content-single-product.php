@@ -25,7 +25,7 @@ global $product; ?>
 				<div class="breadcrumb__text">
 					<h2><?php the_title(); ?></h2>
 					<div class="breadcrumb__option">
-						<a href="<?php echo site_url(); ?>">Home</a>
+						<a href="<?php echo site_url(); ?>"><?php _e('Home','orjanik'); ?></a>
 						<?php $category = $product->get_categories(); echo $category; ?>
 						<span class="single_bread_prod"><?php woocommerce_template_single_title(); ?></span>
 					</div>
