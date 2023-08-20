@@ -125,6 +125,11 @@ function orjanik_register_required_plugins() {
 			'slug'      => 'regenerate-thumbnails',
 			'required'  => false,
 		),
+		array(
+			'name'      => 'Product Filter by WBW',
+			'slug'      => 'woo-product-filter',
+			'required'  => false,
+		),
 
 
 	);

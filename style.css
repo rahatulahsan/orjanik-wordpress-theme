@@ -631,6 +631,20 @@ input.wpcf7-form-control.wpcf7-submit.has-spinner.site-btn {
     border: none!important;
 }
 
+/* Product Filter CSS */
+
+.wfpTitle.wfpClickable {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+button.wpfClearButton.wpfButton {
+    background: #7fad39;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
 
 /* Responsive CSS */
 

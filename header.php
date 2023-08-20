@@ -62,7 +62,7 @@ $theme_options = get_option( 'orjanik_framework' );
                 <?php 
                 
                 if(!is_user_logged_in(  )){?>
-                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><i class="fa fa-user"></i> Login</a>
+                    <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><i class="fa fa-user"></i> <?php _e('Login','orjanik'); ?></a>
                 <?php }else{?>
                     <a href="#"><?php echo $current_user->display_name; ?></a>
                 <?php }

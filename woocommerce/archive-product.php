@@ -45,7 +45,8 @@ get_header( 'shop' ); ?>
 					 *
 					 * @hooked woocommerce_get_sidebar - 10
 					 */
-					do_action( 'woocommerce_sidebar' );
+					//do_action( 'woocommerce_sidebar' );
+					echo do_shortcode( '[wpf-filters id=1]' );
 				?>
 			</div>
 			<div class="col-lg-9 col-md-7">
