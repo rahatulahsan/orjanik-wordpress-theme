@@ -192,6 +192,15 @@ function orjanik_widgets_init() {
 		'before_title'  => '<h6>',
 		'after_title'   => '</h6>',
 	) );
+    register_sidebar( array(
+		'name'          => __( 'Blog Sidebar', 'orjanik' ),
+		'id'            => 'blog-sidebar',
+		'description'   => __( 'Widgets in this area will be shown on the blog page', 'orjanik' ),
+		'before_widget' => '<ul>',
+		'after_widget'  => '</ul>',
+		'before_title'  => '<h4>',
+		'after_title'   => '</h4>',
+	) );
 }
 add_action( 'widgets_init', 'orjanik_widgets_init' );
 

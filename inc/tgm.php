@@ -130,6 +130,11 @@ function orjanik_register_required_plugins() {
 			'slug'      => 'woo-product-filter',
 			'required'  => false,
 		),
+		array(
+			'name'      => 'Recent Posts Widget With Thumbnail',
+			'slug'      => 'recent-posts-widget-with-thumbnails',
+			'required'  => false,
+		),
 
 
 	);

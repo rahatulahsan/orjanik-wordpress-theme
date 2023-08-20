@@ -645,6 +645,45 @@ button.wpfClearButton.wpfButton {
     letter-spacing: 2px;
 }
 
+/* Blog Sidebar CSS */
+
+.blog__sidebar__item ul {
+    margin-bottom: 35px;
+}
+input.search-field {
+    border: 1px solid #d9d2d2;
+    padding: 8px;
+    border-radius: 20px;
+}
+input.search-submit {
+    padding: 8px;
+    border-radius: 20px;
+    width: 100px;
+    background: #7fad39;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+span.rpwwt-post-title {
+    font-weight: 700;
+    color: #000;
+}
+div#rpwwt-recent-posts-widget-with-thumbnails-2 ul li a {
+    line-height: 24px;
+}
+
+.page-numbers {
+    border: 1px solid #b2b2b2;
+    padding: 2px 12px;
+    color: #b2b2b2;
+}
+numbers.current {
+    color: #000;
+}
+.page-numbers:hover {
+    background: #7fad39;
+}
 
 /* Responsive CSS */
 
