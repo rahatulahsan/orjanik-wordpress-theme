@@ -194,6 +194,74 @@ if( class_exists( 'CSF' ) ) {
   ) );
 
 
+  //
+  // Footer Tabs
+  CSF::createSection( $prefix, array(
+    'id'    => 'Contact_tab', // Set a unique slug-like ID
+    'title' => 'Contact Page',
+    'fields' => array(
+        // Address
+        array(
+          'id'      => 'contact-address',
+          'type'    => 'text',
+          'title'   => 'Address',
+          'default' => '60-49 Road 11378 New York'
+        ),
+        // Phone
+        array(
+          'id'      => 'contact-phone',
+          'type'    => 'text',
+          'title'   => 'Phone',
+          'default' => '+65 11.188.666'
+        ),
+        // Email
+        array(
+          'id'      => 'contact-email',
+          'type'    => 'text',
+          'title'   => 'Email',
+          'default' => 'hello@organic.com'
+        ),
+        // Working hour
+        array(
+          'id'      => 'contact-opening-hour',
+          'type'    => 'text',
+          'title'   => 'Open Time',
+          'default' => '10:00 am to 23:00 pm'
+        ),
+        // Map Key
+        array(
+          'id'      => 'map-key',
+          'type'    => 'text',
+          'title'   => 'Map Key',
+          'default'  => 'AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8',
+          'subtitle' => 'Please get the key from Google Map'
+          
+        ),
+        // Map Address
+        array(
+          'id'      => 'map-address',
+          'type'    => 'text',
+          'title'   => 'Map Address',
+          'default' => '16 Creek Ave. Farmingdale, NY'
+        ),
+        // Map State
+        array(
+          'id'      => 'map-state',
+          'type'    => 'text',
+          'title'   => 'Map State',
+          'default' => 'New York'
+        ),
+        // Map Phone
+        array(
+          'id'      => 'map-phone',
+          'type'    => 'text',
+          'title'   => 'Map Phone',
+          'default' => '+12-345-6789'
+        ),
+      )
+      ));
+
+
    //
   // Footer Tabs
   CSF::createSection( $prefix, array(

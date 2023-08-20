@@ -612,6 +612,15 @@ h1.logo_name a {
     display: inline-block!important;
 }
 
+/* Contact Page CSS */
+
+input.wpcf7-form-control.wpcf7-submit.has-spinner.site-btn {
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+
 /* Responsive CSS */
 
 @media (max-width: 640px){
